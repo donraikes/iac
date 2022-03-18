@@ -1,0 +1,19 @@
+---
+#  playbook installSoftware.yml
+#  Author: Donald Raikes
+#  Date: 03/18/2022
+
+- name: Install apache and docker
+  ansible.builtin.package:
+    name: 
+      - httpd
+      - mod_ssl
+      - mod_auth_mellon
+      - docker-engine
+    state: latest
+  become: True
+  register: result
+
+- name: Print the result of the installation
+  debug:
+    msg: "{{ result }}"

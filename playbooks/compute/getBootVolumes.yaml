@@ -1,0 +1,9 @@
+- name: Get boot volume information about all boot volumes in this compartment and availability domain
+  oci_boot_volume_facts:
+    availability_domain: "{{ instance_ad }}"
+    compartment_id: "{{ instance_compartment }}"
+    register: results
+
+- name: Print the results
+  debug:
+    msg: "The list of boot volumes is: {{ result }}"

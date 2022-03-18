@@ -1,0 +1,18 @@
+---
+#  playbook update.yaml
+#  Author: Donald Raikes
+#  Date: 03/10/2022
+
+- name: Update all packages on all hosts
+  hosts: all
+  tasks:
+      - name: run yum to update all packages on the host
+        yum:
+          name: '*'
+          state: latest
+        become: True
+        register: result
+
+      - name: Print the result of the update
+        debug:
+          msg: "{{ result }}"

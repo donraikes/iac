@@ -1,0 +1,22 @@
+- name: Install the latest version of apache httpd and its necessary plugins
+  yum:
+    name: ['httpd','mod_ssl','mod_auth_mellon']
+    state: latest
+    update_cache: True
+  become: yes
+  register: result
+
+- name: Print the result of the yum command
+  debug:
+    msg: "{{ result }}"
+
+- name: Ensure the httpd service is running
+  service:
+    name: httpd
+    state: started
+  become: yes
+  register: result
+
+- name: Print the result of the startup of apache
+  debug:
+    msg: " {{ result }}"

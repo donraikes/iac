@@ -1,0 +1,17 @@
+- name: Configure boot volume backup
+  oci_compute_instance_facts:
+    instance_id: "{{ instance_id }}"
+  register: result
+
+- name: Print instance facts
+  debug:
+    msg: "Launched a new instance {{ result }}"
+
+- set_fact:
+    boot_volume_id: "{{ result.source_details.boot_volume_id }}"
+
+- name: Print the boot volume id
+  debug:
+    msg: "Boot_volume_id: {{ boot_volume_id }}"
+
+

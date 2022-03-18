@@ -1,0 +1,12 @@
+- name: List compute instance information
+  hosts: all
+  collections:
+    - oracle.oci
+  tasks:
+    - name: list instance facts
+      oci_compute_instance_facts:
+      register: results
+
+    - name: Print the facts
+      debug:
+        msg: "{{ results }}"

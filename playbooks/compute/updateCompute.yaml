@@ -1,0 +1,18 @@
+---
+#  playbook:  updateCompute.yaml
+#  Author: Donald Raikes
+# date: 03/10/2022
+
+- name: Update the defined tag for all instances
+  hosts: all
+  collections:
+    - oracle.oci
+  tasks:
+    - name: Update the defined_tag
+      oci_compute_instance:
+        defined_tags: "{'Oracle-Cloud-Optimizer': {'directive':'non-cpu-focused'} }"
+      register: result
+ 
+    - name: Print Results
+      debug:
+        msg: "{{ result }}"
