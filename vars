@@ -1,0 +1,15 @@
+###########################################
+#	file: vars
+#	Author: Donald Raikes
+#	date: 03/18/2022
+#
+#	The environment variables required by various playbooks.
+#
+###########################################
+export COMPARTMENT_OCID=ocid1.compartment.oc1..aaaaaaaa4gsn56d2zs5owzbygv6zhdpuyfmpnahsuiaqmxdpza23ckkp3g5q
+export VCN_OCID="ocid1.vcn.oc1.iad.amaaaaaafa5ki3iayog7fgnuhx5clkbmvv6zkqinyp7tdcmjl5b3ex5gaila"
+export VCN_CIDR=10.0.0.0/16
+export SUBNET_OCID="ocid1.subnet.oc1.iad.aaaaaaaah6fgezxnxaqzkhghkd2cnvh3dceutundand3nikovytvmgfd2nga"
+export SUBNET_CIDR=10.0.0.0/24
+export SUBNET_NAME="Public Subnet-lab-vcn"
+export PUBLIC_KEY=`cat ~/.ssh/id_rsa.pub`
