@@ -1,0 +1,12 @@
+- name: Test my dynamic inventory configuration
+  hosts: all
+  collections:
+    - oracle.oci
+  tasks:
+    - name: Gather facts on my inventory hosts
+      oci_compute_instance_facts:
+      register: results
+
+    - name: Print the results
+      debug:
+        msg: "{{ results }}"

@@ -1,3 +1,3 @@
 #!/bin/bash
 source vars
-ansible-playbook playbooks/general/listInstances.yaml | tee listInstances.log
+ansible-playbook -i inventory.oci.yml playbooks/general/listInstances.yaml | tee listInstances.log

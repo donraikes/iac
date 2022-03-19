@@ -15,7 +15,7 @@
     TCP_protocol: "6"
     SSH_port: "22"
 
-    config_profile_name: "{{ lookup('env','SAMPLE_CONFIG_PROFILE_NAME') }}"
+    config_profile_name: "{{ lookup('env','CONFIG_PROFILE') }}"
     vcn_name: "{{ lookup('env', 'VCN_ID') }}"
     vcn_cidr_block: "{{ lookup('env','VCN_CIDR') }}"
 
@@ -25,7 +25,8 @@
 
 
     instance_shape: "{{ lookup('env', 'SHAPE') }}"
-    instance_hostname: "{{ lookup('env','DISPLAYNAME') }}"
+    instance_hostname: "{{ lookup('env','DISPLAY_NAME') }}"
+    instance_tag: "{{ lookup('env','FREEFORM_TAG') }}"
 
     #########################################
     # Tenancy specific configuration
@@ -34,21 +35,19 @@
     #########################################
     instance_ad: "{{ lookup('env', 'AVAILABILITY_DOMAIN') }}"
     instance_fault_domain: "{{ lookup('env','FAULT_DOMAIN') }}"
-    instance_compartment: "{{ lookup('env', 'COMPARTMENT_ID') }}"
+    instance_compartment: "{{ lookup('env', 'COMPARTMENT_OCID') }}"
     # provide an "OL" image
     # find OL image ocids per region here: https://docs.cloud.oracle.com/iaas/images/image/501c6e22-4dc6-4e99-b045-cae47aae343f/
     instance_image: "{{ lookup('env', 'IMAGE') }}"
 
   tasks:
     - block:
-      - import_tasks: setup.yml
 
       - set_fact:
-          SSH_AUTHORIZED_KEYS: "{{ lookup('env', 'SAMPLE_PUBLIC_SSH_KEY') if 'SAMPLE_PUBLIC_SSH_KEY' in ansible_env else lookup('file',  my_test_public_key ) }}"
+          SSH_AUTHORIZED_KEYS: "{{ lookup('env', 'PUBLIC_SSH_KEY') }}"
 
       - import_tasks: createInstance.yml
       - import_tasks: installSoftware.yml
-      - import_tasks: teardown.yml
 
 
       rescue:

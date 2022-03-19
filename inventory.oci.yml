@@ -7,6 +7,6 @@ fetch_compute_hosts: true
 fetch_db_hosts: true
 
 hostname_format_preferences:
-  - "display_name+'.oci.com'"
+#  - "display_name+'.oci.com'"
 #  - "private_ip"
-#  - "public_ip"
+  - "public_ip"

@@ -1,5 +1,5 @@
 - name: List all compute instances in this region and compartment
-  hosts: localhost
+  hosts: tag_server=test
   collections:
     - oracle.oci
   vars:
